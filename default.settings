@@ -1,7 +1,6 @@
 {
   "name": "Canvas Sample",
-  "package": "com.defrac.sample",
-  "identifier": "canvas",
+  "package": "com.defrac.sample.canvas",
   "main": "com.defrac.sample.canvas.CanvasApp",
   "version": "1.0",
   "targets": [
@@ -14,6 +13,8 @@
   "web": {
     "port": 11751,
     "debug": "false",
-    "strictMode": "false"
-  }
+    "strictMode": "false",
+    "optimize": "4"
+  },
+  "optimize": "1"
 }
