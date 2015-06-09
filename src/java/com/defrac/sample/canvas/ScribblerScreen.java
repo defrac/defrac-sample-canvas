@@ -87,8 +87,9 @@ public final class ScribblerScreen extends Screen {
   }
 
   void createCanvas(Stage stage) {
-    canvas = stage.addChild(new Canvas(stage.width(), stage.height()));
+    canvas = new Canvas(stage.width(), stage.height());
     canvas.listener(painter);
     graphics = canvas.graphics();
+    stage.addChild(canvas);
   }
 }
