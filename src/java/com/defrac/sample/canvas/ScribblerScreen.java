@@ -4,18 +4,15 @@ import defrac.display.Canvas;
 import defrac.display.DisplayObject;
 import defrac.display.Stage;
 import defrac.display.event.UIActionEvent;
-import defrac.display.event.raw.ResizeEvent;
 import defrac.display.graphics.Graphics;
-import defrac.event.EventListener;
-import defrac.lang.Procedure;
+import defrac.ui.ContentScreen;
 import defrac.ui.DisplayList;
-import defrac.ui.Screen;
 import defrac.util.Color;
 
 /**
  *
  */
-public final class ScribblerScreen extends Screen {
+public final class ScribblerScreen extends ContentScreen {
   DisplayList displayList;
   Brush brush;
   DisplayObject.Listener painter;
@@ -47,21 +44,15 @@ public final class ScribblerScreen extends Screen {
       }
     };
 
-    displayList.onStageReady(new Procedure<Stage>() {
-      @Override
-      public void apply(final Stage stage) {
-        stage.backgroundColor(Color.Web.WHITE);
-        createCanvas(stage);
+    displayList.onStageReady(stage -> {
+      stage.backgroundColor(Color.Web.WHITE);
+      createCanvas(stage);
 
-        stage.globalEvents().onResize.add(new EventListener<ResizeEvent>() {
-          @Override
-          public void onEvent(ResizeEvent event) {
-            brush.reset();
-            destroyCanvas(stage);
-            createCanvas(stage);
-          }
-        });
-      }
+      stage.globalEvents().onResize.add(event -> {
+        brush.reset();
+        destroyCanvas(stage);
+        createCanvas(stage);
+      });
     });
 
     rootView(displayList);
